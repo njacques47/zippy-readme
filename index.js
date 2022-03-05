@@ -56,7 +56,7 @@ const promptUser = () => {
       type: 'input',
       name: 'badges',
       message: 'Optional badges input (only when detailed)',
-      when: ({ readmeType }) => [2]
+      when: ({ readmeType }) => 'Detailed'
     },
     { // features (optional)
       type: 'input',
@@ -77,15 +77,32 @@ const promptUser = () => {
 };
 
 // TODO: Create a function to write README file
-function writeFile(fileName, data) {
-  fs.writeFile()
+const writeFile = data => {
+  return new Promise ((resolve, reject) => {
+    fs.writeFile('./dist/MOCK.md', data, err => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve({
+        ok: true,
+        message: 'Check distibution for file!'
+      });
+    });
+  });
 };
 
 // TODO: Create a function to initialize app
 function init() {
   promptUser()
-    .then()
-}
+    .then(data => {
+      return generateMarkdown(data);
+    })
+    .then(userMarkdown => {
+      writeFile(userMarkdown)
+      console.log('Check dist folder')
+    });
+};
 
 // Function call to initialize app
 init();
