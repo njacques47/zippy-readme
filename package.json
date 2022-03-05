@@ -1,7 +1,7 @@
 {
   "name": "static-site",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sometimes you don't wan't to think too hard about setting up a README file. Its the simplest part of the process but also the most lackluster. In just a few clicks you'll have a README generated with all the sections you need without even thinking about it. Starter code was provided for this assignment.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "inquirer": "^6.3.1"
-  }
+    "inquirer": "^6.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njacques47/zippy-readme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/njacques47/zippy-readme/issues"
+  },
+  "homepage": "https://github.com/njacques47/zippy-readme#readme"
 }
