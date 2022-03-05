@@ -3,28 +3,35 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 // TODO: Create an array of questions for user input
-const questions = [
+const promptUser = () => {
+  return inquirer
   .prompt([
-    { // project name
+    { // project name VALIDATE
       type: 'input',
-      name: 'projectName',
+      name: 'name',
       message: 'What is the project named? (required)'
     },
-    { // table of contents
-      type: 'confirm',
-      name: 'tableOfContents',
-      message: 'Would you like a table of contents?',
-      default: false
+    { // project description VALIDATE
+      type: 'input',
+      name: 'description',
+      message: 'Please provide a brief description of your project.'
     },
-    { //installation guide 
+    { // table of contents
+      type: 'list',
+      name: 'readme-type',
+      message: 'What type of README would you like? Simple (installation, usage, credits, license), simple ToC (w/ table of contents), or detail (simple ToC + badges, features, contributions, and tests)',
+      choices: ['Simple (no table of contents)', 'Simple ToC', 'Detailed'],
+      default: [0]
+    },
+    { //installation guide VALIDATE
       type: 'input',
       name: 'installation',
-      message: 'What are the steps required to install your project? Provide a descriptive step by step explanation.',
+      message: 'What are the steps required to install your project?'
     },
     { // usage
       type: 'input',
       name: 'usage',
-      message: 'What does someone need to know about this project such as instructions for use and examples?',
+      message: 'What does someone need to know about this project such as instructions or examples?',
     },
     { // credits (optional) list collaborators and their github usernames
       type: 'input',
@@ -57,8 +64,8 @@ const questions = [
       name: 'tests',
       message: 'Would you like to include tests?',
     },
-  ])
-];
+  ]);
+};
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
