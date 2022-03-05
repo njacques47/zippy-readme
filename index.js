@@ -1,15 +1,18 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generateMarkdown = require('./utils/generateMarkdown')
+const generateMarkdown = require('./utils/generateMarkdown');
+
+
 
 // TODO: Create an array of questions for user input
 const promptUser = () => {
+  
   return inquirer
   .prompt([
     { // project name VALIDATE
       type: 'input',
-      name: 'name',
+      name: 'title',
       message: 'What is the project named? (required)'
     },
     { // project description VALIDATE
@@ -19,10 +22,9 @@ const promptUser = () => {
     },
     { // table of contents
       type: 'list',
-      name: 'readmeType',
+      name: 'readme',
       message: 'What type of README would you like? Simple (installation, usage, credits, license), simple ToC (w/ table of contents), or detail (simple ToC + badges, features, contributions, and tests)',
-      choices: ['Simple (no table of contents)', 'Simple ToC', 'Detailed'],
-      default: [0]
+      choices: ['Simple (w/o ToC)', 'Simple + ToC', 'Detailed'],
     },
     { //installation guide VALIDATE
       type: 'input',
@@ -32,12 +34,12 @@ const promptUser = () => {
     { // usage
       type: 'input',
       name: 'usage',
-      message: 'What does someone need to know about this project such as instructions or demos?',
+      message: 'What does someone need to know about this project such as instructions or demos?'
     },
     { // credits (optional) list collaborators and their github usernames
       type: 'input',
       name: 'credits',
-      message: 'Add any credits or resource links here',
+      message: 'Add any credits or resource links here'
     },
     { // licenses that tell what can be done with the project
       type: 'list',
@@ -56,23 +58,30 @@ const promptUser = () => {
       type: 'input',
       name: 'badges',
       message: 'Optional badges input (only when detailed)',
-      when: ({ readmeType }) => 'Detailed'
+      when(data) {
+        return data.readme === 'Detailed'}
     },
     { // features (optional)
       type: 'input',
       name: 'features',
       message: 'features section?',
+      when(data) {
+        return data.readme === 'Detailed'}
     },
     { // how to contribute/open source (optional)
       type: 'input',
       name: 'contribution',
       message: 'How to contribute?',
+      when(data) {
+        return data.readme === 'Detailed'}
     },
     { // tests (optional)
       type: 'input',
       name: 'tests',
       message: 'Tests included?',
-    },
+      when(data) {
+        return data.readme === 'Detailed'}
+    }
   ]);
 };
 
@@ -95,8 +104,8 @@ const writeFile = data => {
 // TODO: Create a function to initialize app
 function init() {
   promptUser()
-    .then(data => {
-      return generateMarkdown(data);
+    .then(userAnswers => {
+      return generateMarkdown(userAnswers);
     })
     .then(userMarkdown => {
       writeFile(userMarkdown)
