@@ -13,18 +13,39 @@ const promptUser = () => {
     { // project name VALIDATE
       type: 'input',
       name: 'title',
-      message: 'What is the project named? (required)'
+      message: 'What is the project named? (required)',
+      validate: nameInput => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please enter your project's title!");
+          return false;
+        }
+      }
     },
     { // project description VALIDATE
       type: 'input',
       name: 'description',
-      message: 'Please provide a brief description of your project.'
+      message: 'Please provide a brief description of your project.',
+      validate: descriptionInput => {
+        if (descriptionInput) {
+          return true;
+        } else {
+          console.log("Please enter a valid description");
+          return false;
+        }
+      }
     },
     { // table of contents
       type: 'list',
       name: 'readme',
-      message: 'What type of README would you like? Simple (installation, usage, credits, license), simple ToC (w/ table of contents), or detail (simple ToC + badges, features, contributions, and tests)',
-      choices: ['Simple (w/o ToC)', 'Simple + ToC', 'Detailed'],
+      message: 'What type of README would you like? Simple (installation, usage, credits, license), simple ToC (w/ table of contents), or detailed (simple ToC + badges, features, contributions, and tests)',
+      choices: ['Simple', 'Simple ToC', 'Detailed'],
+      validate: readmeType => {
+        if (readmeType === 'Detailed') {
+          return 'A detailed README will be generated with a table of contents and four empty sections for additional details.' 
+        }
+      }
     },
     { //installation guide VALIDATE
       type: 'input',
@@ -53,35 +74,46 @@ const promptUser = () => {
         'None'
       ]
     },
-    // use when: for everything below here
-    { // badges (optional)
+    { // contact details
       type: 'input',
-      name: 'badges',
-      message: 'Optional badges input (only when detailed)',
-      when(data) {
-        return data.readme === 'Detailed'}
+      name: 'email',
+      message: 'What is your email?'
     },
-    { // features (optional)
+    { 
       type: 'input',
-      name: 'features',
-      message: 'features section?',
-      when(data) {
-        return data.readme === 'Detailed'}
+      name: 'github',
+      message: 'What is your github username? (ex. breehall)'
     },
-    { // how to contribute/open source (optional)
-      type: 'input',
-      name: 'contribution',
-      message: 'How to contribute?',
-      when(data) {
-        return data.readme === 'Detailed'}
-    },
-    { // tests (optional)
-      type: 'input',
-      name: 'tests',
-      message: 'Tests included?',
-      when(data) {
-        return data.readme === 'Detailed'}
-    }
+    // use when: for everything below here // 
+    // { // badges (optional)
+    //   type: 'input',
+    //   name: 'badges',
+    //   message: 'Add b',
+    //   when(data) {
+    //     return data.readme === 'Detailed';
+    //   }
+    // },
+    // { // features (optional)
+    //   type: 'input',
+    //   name: 'features',
+    //   message: 'features section?',
+    //   when(data) {
+    //     return data.readme === 'Detailed'}
+    // },
+    // { // how to contribute/open source (optional)
+    //   type: 'input',
+    //   name: 'contribution',
+    //   message: 'How to contribute?',
+    //   when(data) {
+    //     return data.readme === 'Detailed'}
+    // },
+    // { // tests (optional)
+    //   type: 'input',
+    //   name: 'tests',
+    //   message: 'Tests included?',
+    //   when(data) {
+    //     return data.readme === 'Detailed'}
+    // }
   ]);
 };
 
@@ -108,6 +140,11 @@ function init() {
       return generateMarkdown(userAnswers);
     })
     .then(userMarkdown => {
+      if (userMarkdown.readme === 'Detailed') {
+          writeFile(userMarkdown)
+          //console.log('Check dist folder')
+          return 'A detailed README was generated with all input data and an empty sections for badges, features, contributions, and tests.'
+        }
       writeFile(userMarkdown)
       console.log('Check dist folder')
     });
