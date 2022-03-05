@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
+const generateMarkdown = require('./utils/generateMarkdown')
 
 // TODO: Create an array of questions for user input
 const promptUser = () => {
@@ -18,7 +19,7 @@ const promptUser = () => {
     },
     { // table of contents
       type: 'list',
-      name: 'readme-type',
+      name: 'readmeType',
       message: 'What type of README would you like? Simple (installation, usage, credits, license), simple ToC (w/ table of contents), or detail (simple ToC + badges, features, contributions, and tests)',
       choices: ['Simple (no table of contents)', 'Simple ToC', 'Detailed'],
       default: [0]
@@ -31,47 +32,60 @@ const promptUser = () => {
     { // usage
       type: 'input',
       name: 'usage',
-      message: 'What does someone need to know about this project such as instructions or examples?',
+      message: 'What does someone need to know about this project such as instructions or demos?',
     },
     { // credits (optional) list collaborators and their github usernames
       type: 'input',
       name: 'credits',
-      message: 'What does someone need to know about this project such as instructions for use and examples?',
+      message: 'Add any credits or resource links here',
     },
     { // licenses that tell what can be done with the project
-      type: 'input',
+      type: 'list',
       name: 'license',
-      message: 'What does someone need to know about this project such as instructions for use and examples?',
+      message: 'What license does this project use?',
+      choices: [
+        'MIT',
+        'GNU GPL v3',
+        'Apache 2',
+        'BSD 3-Clause',
+        'None'
+      ]
     },
     // use when: for everything below here
     { // badges (optional)
       type: 'input',
       name: 'badges',
-      message: 'What does someone need to know about this project such as instructions for use and examples?',
+      message: 'Optional badges input (only when detailed)',
+      when: ({ readmeType }) => [2]
     },
     { // features (optional)
       type: 'input',
       name: 'features',
-      message: 'What does someone need to know about this project such as instructions for use and examples?',
+      message: 'features section?',
     },
     { // how to contribute/open source (optional)
       type: 'input',
       name: 'contribution',
-      message: 'What does someone need to know about this project such as instructions for use and examples?',
+      message: 'How to contribute?',
     },
     { // tests (optional)
-      type: 'confirm',
+      type: 'input',
       name: 'tests',
-      message: 'Would you like to include tests?',
+      message: 'Tests included?',
     },
   ]);
 };
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeFile(fileName, data) {
+  fs.writeFile()
+};
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+  promptUser()
+    .then()
+}
 
 // Function call to initialize app
 init();
