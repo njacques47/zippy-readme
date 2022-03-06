@@ -1,34 +1,24 @@
-# sdf
+# Jilly Bean
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
   ## Description
-  sdf
-
-  undefined
-  
+  Fun stuff
 
   ## Installation
-  sdf
+  NPM Install
   
   ## Usage
-  sdf
-
-  ## Credits
-  sdf
-  
-  ## License 
-  MIT
-
-  ## Badges
-  undefined
-  
-  ## Features
-  undefined
+  not really
+    
+  ## Tests
+  none at this time
 
   ## Contributing
   undefined
   
-  ## Tests
-  undefined
+  ## License 
+  I am using the [MIT](https://opensource.org/licenses/MIT) license for this project. Please follow the contributing guidelines provided. Happy coding!
+    
   
   ## Contact
-  If you have any questions, you can [email me](sdf) or visit my [github profile](https://github.com/sdf). 
+  If you have any questions, you can [email me](none@google.com) or visit my [github profile](https://github.com/breehall). 
