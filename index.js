@@ -19,7 +19,7 @@ const promptUser = () => {
           return true;
         } else {
           console.log("Please enter your project's title!");
-          return false;
+          return false; // try as a function that includes (!answer)
         }
       }
     },
@@ -36,17 +36,6 @@ const promptUser = () => {
         }
       }
     },
-    { // table of contents
-      type: 'list',
-      name: 'readme',
-      message: 'What type of README would you like? Simple (installation, usage, credits, license), simple ToC (w/ table of contents), or detailed (simple ToC + badges, features, contributions, and tests)',
-      choices: ['Simple', 'Simple ToC', 'Detailed'],
-      validate: readmeType => {
-        if (readmeType === 'Detailed') {
-          return 'A detailed README will be generated with a table of contents and four empty sections for additional details.' 
-        }
-      }
-    },
     { //installation guide VALIDATE
       type: 'input',
       name: 'installation',
@@ -55,12 +44,17 @@ const promptUser = () => {
     { // usage
       type: 'input',
       name: 'usage',
-      message: 'What does someone need to know about this project such as instructions or demos?'
+      message: 'What does someone need to know about this project to use it?'
     },
-    { // credits (optional) list collaborators and their github usernames
+    { // tests
       type: 'input',
-      name: 'credits',
-      message: 'Add any credits or resource links here'
+      name: 'tests',
+      message: 'What tests are included and how are they used?'
+    },
+    { // how to contribute to project VALIDATE
+      type: 'input',
+      name: 'contribution',
+      message: 'What are the guidelines for contributing?'
     },
     { // licenses that tell what can be done with the project
       type: 'list',
@@ -68,9 +62,9 @@ const promptUser = () => {
       message: 'What license does this project use?',
       choices: [
         'MIT',
-        'GNU GPL v3',
-        'Apache 2',
-        'BSD 3-Clause',
+        'GPL-3.0',
+        'Apache-2.0',
+        'BSD-3-Clause',
         'None'
       ]
     },
@@ -83,41 +77,12 @@ const promptUser = () => {
       type: 'input',
       name: 'github',
       message: 'What is your github username? (ex. breehall)'
-    },
-    // use when: for everything below here // 
-    // { // badges (optional)
-    //   type: 'input',
-    //   name: 'badges',
-    //   message: 'Add b',
-    //   when(data) {
-    //     return data.readme === 'Detailed';
-    //   }
-    // },
-    // { // features (optional)
-    //   type: 'input',
-    //   name: 'features',
-    //   message: 'features section?',
-    //   when(data) {
-    //     return data.readme === 'Detailed'}
-    // },
-    // { // how to contribute/open source (optional)
-    //   type: 'input',
-    //   name: 'contribution',
-    //   message: 'How to contribute?',
-    //   when(data) {
-    //     return data.readme === 'Detailed'}
-    // },
-    // { // tests (optional)
-    //   type: 'input',
-    //   name: 'tests',
-    //   message: 'Tests included?',
-    //   when(data) {
-    //     return data.readme === 'Detailed'}
-    // }
+    }
   ]);
 };
 
 // TODO: Create a function to write README file
+// don't forget to change the name back to README
 const writeFile = data => {
   return new Promise ((resolve, reject) => {
     fs.writeFile('./dist/MOCK.md', data, err => {
@@ -140,11 +105,6 @@ function init() {
       return generateMarkdown(userAnswers);
     })
     .then(userMarkdown => {
-      if (userMarkdown.readme === 'Detailed') {
-          writeFile(userMarkdown)
-          //console.log('Check dist folder')
-          return 'A detailed README was generated with all input data and an empty sections for badges, features, contributions, and tests.'
-        }
       writeFile(userMarkdown)
       console.log('Check dist folder')
     });
