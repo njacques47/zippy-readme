@@ -1,24 +1,31 @@
-# Jilly Bean
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Mock README
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 
-  ## Description
-  Fun stuff
+## Description
+Super awesome
 
-  ## Installation
-  NPM Install
+## Table of Contents
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Tests](#tests)
+  - [Contributing](#contributing)
+  - [License](#license)
+
+## Installation
+a few
+
+## Usage
+none really
   
-  ## Usage
-  not really
+## Tests
+nope
+
+## Contributing
+zilch
+ 
+## License
+I am using the [MIT](https://opensource.org/licenses/MIT) license for this project. Please follow the contributing guidelines provided in the previous section. For general information on licenses, visit https://opensource.org/ or https://choosealicense.com  to find a suitable license for your own project. Happy coding!
     
-  ## Tests
-  none at this time
 
-  ## Contributing
-  undefined
-  
-  ## License 
-  I am using the [MIT](https://opensource.org/licenses/MIT) license for this project. Please follow the contributing guidelines provided. Happy coding!
-    
-  
-  ## Contact
-  If you have any questions, you can [email me](none@google.com) or visit my [github profile](https://github.com/breehall). 
+## Contact
+If you have any questions, you can [email me](none@gmail.com) or visit my [github profile](https://github.com/breehall). 
