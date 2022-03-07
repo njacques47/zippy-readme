@@ -1,37 +1,6 @@
-// renders table of contents based on user input
-const renderTOC = data => {
-    let readmeType = data.readme;
-
-    if (readmeType === 'Detailed') {
-      return `
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-- [Badges](#badges)
-- [Features](#features)
-- [Contributions](#contributions)
-- [Tests](#tests)
-- [Contact](#contact)
-
-        `;
-    } else if (readmeType === 'Simple ToC') {
-      return `
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-
-        `;
-    } else {
-      return '';
-    };
-};
-
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
+// COMPLETED: adds a clickable badge to the top of the README file
 function renderLicenseBadge(license) {
   switch (license) {
     case 'MIT':
@@ -47,47 +16,72 @@ function renderLicenseBadge(license) {
   }
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {}
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
+// COMPLETED: renders license section with appropriate links based on user selection
 function renderLicenseSection(license) {
-  if (license) {
-    return `I am using the [${license}](https://opensource.org/licenses/${license}) license for this project. Please follow the contributing guidelines provided. Happy coding!
-    `
+  if (license === 'None') {
+    return ''
   }
-  return ''
-}
+  return `## License
+I am using the [${license}](https://opensource.org/licenses/${license}) license for this project. Please follow the contributing guidelines provided in the previous section. For general information on licenses, visit https://opensource.org/ or https://choosealicense.com  to find a suitable license for your own project. Happy coding!
+    `
+};
+
+// renders table of contents based on license selection (license is excluded if none is selected as an option)
+const renderTOC = data => {
+
+  if (data === 'None') {
+    return `
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Tests](#tests)
+  - [Contributing](#contributing)
+  - [Contact](#contact)
+    `;
+  } else {
+    return `
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Tests](#tests)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Contact](#contact)
+`
+  };
+};
+
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   
   return `# ${data.title}
-  ${renderLicenseBadge(data.license)}
+${renderLicenseBadge(data.license)}  
 
-  ## Description
-  ${data.description}
+## Description
+${data.description}
 
-  ## Installation
-  ${data.installation}
-  
-  ## Usage
-  ${data.usage}
-    
-  ## Tests
-  ${data.tests}
+## Table of Contents
+  ${renderTOC(data.license)}
 
-  ## Contributing
-  ${data.contributing}
+## Installation
+${data.installation}
+
+## Usage
+${data.usage}
   
-  ## License 
-  ${renderLicenseSection(data.license)}
-  
-  ## Contact
-  If you have any questions, you can [email me](${data.email}) or visit my [github profile](https://github.com/${data.github}). 
-`;
-}
+## Tests
+${data.tests}
+
+## Contributing
+${data.contributing}
+
+${renderLicenseSection(data.license)}
+
+## Contact
+If you have any questions, you can email me at ${data.email} or visit my [github profile](https://github.com/${data.github}). 
+  `;
+};
 
 module.exports = generateMarkdown;
