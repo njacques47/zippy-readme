@@ -8,8 +8,8 @@ Sometimes you don't wan't to think too hard about setting up a README file. Its 
 To use this project, clone the repo to your local machine and then run `npm install` in the command line of your terminal. This will initialize the required dependancies needed to make the magic happen! 
 
 ## Usage
-To initiate the prompt, run `node index` (add the .js if you'd like) in the command line of your terminal (after you've followed the installation instructions of course). That will initiate some prompts to complete and viola! A new README file wil be generated in the distribution folder. Here's a video demo of this process.  
-![PROJECT-DEMO](demo-video-goes-here)
+To initiate the prompt, run `node index` (add the .js if you'd like) in the command line of your terminal (after you've followed the installation instructions of course). That will initiate some prompts to complete and viola! A new README file wil be generated in the distribution folder. Here's a [video demo](https://drive.google.com/file/d/1YAjRp3jGwcM2e7YXTenCodAL-Mh4rMCA/view) of this process. NOTE: Please be mindful that the table of contents will remove a section if no license is selected.
+
 
 
 ## Future Development
@@ -24,3 +24,4 @@ I spent some ~~AKA way too much~~ time on figuring out how to make this a useful
 
 ## Deployment
 [Github](https://github.com/njacques47/zippy-readme)
+[Project Demo Speedrun](https://drive.google.com/file/d/1YAjRp3jGwcM2e7YXTenCodAL-Mh4rMCA/view) a demo can also be viewed in the repo as well.
