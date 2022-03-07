@@ -1,8 +1,8 @@
-# adsf
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
+# Node Generator
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 
 ## Description
-asdf
+This is a demo of my finished project.
 
 ## Table of Contents
   
@@ -15,21 +15,21 @@ asdf
 
 
 ## Installation
-asdf
+clone the repo and npm install in the command line
 
 ## Usage
-adsf
+Invoke the application by typing node index to begin the prompt
   
 ## Tests
-sadf
+In this case, there are none.
 
 ## Contributing
-asdf
+Don't do anything too crazy. 
 
 ## License
-I am using the [Apache-2.0](https://opensource.org/licenses/Apache-2.0) license for this project. Please follow the contributing guidelines provided in the previous section. For general information on licenses, visit https://opensource.org/ or https://choosealicense.com  to find a suitable license for your own project. Happy coding!
+I am using the [MIT](https://opensource.org/licenses/MIT) license for this project. Please follow the contributing guidelines provided in the previous section. For general information on licenses, visit https://opensource.org/ or https://choosealicense.com  to find a suitable license for your own project. Happy coding!
     
 
 ## Contact
-If you have any questions, you can email me at asdf or visit my [github profile](https://github.com/asdf). 
+If you have any questions, you can email me at none@gmail.com or visit my [github profile](https://github.com/njacques47). 
   
