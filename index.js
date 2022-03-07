@@ -7,54 +7,73 @@ const generateMarkdown = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const promptUser = () => {
-  
   return inquirer
   .prompt([
     { // project name VALIDATE
       type: 'input',
       name: 'title',
       message: 'What is the project named? (required)',
-      validate: nameInput => {
-        if (nameInput) {
-          return true;
-        } else {
-          console.log("Please enter your project's title!");
-          return false; // try as a function that includes (!answer)
+      validate(answer) {
+        if (!answer) {
+          return "Please enter a valid response"
         }
+        return true
       }
     },
     { // project description VALIDATE
       type: 'input',
       name: 'description',
       message: 'Please provide a brief description of your project.',
-      validate: descriptionInput => {
-        if (descriptionInput) {
-          return true;
-        } else {
-          console.log("Please enter a valid description");
-          return false;
+      validate(answer) {
+        if (!answer) {
+          return "Please enter a valid response"
         }
+        return true
       }
     },
     { //installation guide VALIDATE
       type: 'input',
       name: 'installation',
-      message: 'What are the steps required to install your project?'
+      message: 'What are the steps required to install your project and setup the programming environment?',
+      validate(answer) {
+        if (!answer) {
+          return "Please enter a valid response"
+        }
+        return true
+      }
     },
     { // usage
       type: 'input',
       name: 'usage',
-      message: 'What does someone need to know about this project to use it?'
+      message: 'What does someone need to know about this project to use it?',
+      validate(answer) {
+        if (!answer) {
+          return "Please enter a valid response"
+        }
+        return true
+      }
     },
     { // tests
       type: 'input',
       name: 'tests',
-      message: 'What tests are included and how are they used?'
+      message: 'What tests are included and how are they used?',
+      validate(answer) {
+        if (!answer) {
+          return "Please enter a valid response"
+        }
+        return true
+      }
     },
-    { // how to contribute to project VALIDATE
+    { // how to contribute to project 
       type: 'input',
-      name: 'contribution',
-      message: 'What are the guidelines for contributing?'
+      name: 'contributing',
+      message: 'What are the guidelines for contributing?',
+      validate(answer) {
+        if (!answer) {
+          return "Please enter a valid response"
+        }
+        return true
+      }
     },
     { // licenses that tell what can be done with the project
       type: 'list',
@@ -71,12 +90,24 @@ const promptUser = () => {
     { // contact details
       type: 'input',
       name: 'email',
-      message: 'What is your email?'
+      message: 'What is your email?',
+      validate(answer) {
+        if (!answer) {
+          return "Please enter a valid response"
+        }
+        return true
+      }
     },
     { 
       type: 'input',
       name: 'github',
-      message: 'What is your github username? (ex. breehall)'
+      message: 'What is your github username? (ex. breehall)',
+      validate(answer) {
+        if (!answer) {
+          return "Please enter a valid response"
+        }
+        return true
+      }
     }
   ]);
 };
@@ -85,15 +116,12 @@ const promptUser = () => {
 // don't forget to change the name back to README
 const writeFile = data => {
   return new Promise ((resolve, reject) => {
-    fs.writeFile('./dist/MOCK.md', data, err => {
+    fs.writeFile('./dist/README.md', data, err => {
       if (err) {
         reject(err);
         return;
       }
-      resolve({
-        ok: true,
-        message: 'Check distibution for file!'
-      });
+      resolve('README created! Check distibution folder for the results!');
     });
   });
 };
@@ -105,8 +133,13 @@ function init() {
       return generateMarkdown(userAnswers);
     })
     .then(userMarkdown => {
-      writeFile(userMarkdown)
-      console.log('Check dist folder')
+      return writeFile(userMarkdown)
+    })
+    .then(fileResponse => {
+      console.log(fileResponse);
+    })
+    .catch(err => {
+      console.log(err);
     });
 };
 
